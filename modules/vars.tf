@@ -11,7 +11,7 @@ variable "PATH_TO_PRIVATE_KEY" {
 
 variable "PATH_TO_PUBLIC_KEY" {
   type = string
-  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCK9FDssAx9GhCTilql/FLdZZyXSpEzFh99qxtZv06mWwLXniwzbfrRwerFhP9VQ24QSqRw8pmNagsrBVwxHqodKJX2cHP23VE5vmqouqkP3CH2Cuxz8eTIWv6ZIr9KXjvSVQTA3zvbcx/lkizx8BkOWQvcf6rRAp5tzgR7WD+jpsBfvQTctetQtU0g7rrT4Cqj+ikug3PRhZYrYopKOPE8xvpvLj4NrrkYxQGEsoSuM1uiWTKFlVwkkAAJrlApuFh6E1onJ6904vrdgZ/lERpCJcveuBvg1nr+3D+C2s4XQN4FEwZqAlkJcNU1yZNqIssefeVRRgMATYrBRsWYypMH"
+  default = "/Users/simran/terraform/demo/terraform-key.pub"
 }
 
 variable "AMIS" {
@@ -22,4 +22,34 @@ variable "AMIS" {
     eu-west-1 = "ami-01793b684af7a3e2c"
   }
 }
+
+variable "name" {
+  description = "The resource name and Name tag of the load balancer."
+  type        = string
+  default     = "my-alb"
+}
+
+variable "domain" {
+  description = "The resource name and Name tag of the load balancer."
+  type        = string
+  default     = "servermyip.com"
+}
+
+
+variable "ssl_policy" {
+  description = "The resource name and Name tag of the load balancer."
+  type        = string
+  default     = "ELBSecurityPolicy-2016-08"
+}
+
+
+
+
+
+
+
+
+
+
+
 
