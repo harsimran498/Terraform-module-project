@@ -1,16 +1,12 @@
 
 
 variable "public_hosted_zone" {}
-
-
 variable "AWS_REGION" {
   default = "eu-west-1"
 }
-
 variable "PATH_TO_PRIVATE_KEY" {
   default = "/Users/simran/terraform/terraform-course/demo-16/terraform-key.pem"
 }
-
 variable "PATH_TO_PUBLIC_KEY" {
   default = "/Users/simran/terraform/terraform-course/demo-16/terraform-key.pub"
 }
@@ -24,7 +20,6 @@ variable "AMIS" {
 }
 variable "ALB_NAME" {}
 variable CONDITION_VALUES {}
-
 
 
 

@@ -1,8 +1,9 @@
 # This file takes data sources created in AWS from data.tf file
 # Vars are declared in vars.tf and called here
 
-#create alb listener and set default action 
 
+
+#create alb listener and set default action 
 resource "aws_alb_listener" "listener" {
   load_balancer_arn = "${data.aws_lb.alb.arn}"
   port              = "443"
@@ -18,6 +19,13 @@ resource "aws_alb_listener" "listener" {
     }
   }
  }
+
+ #for replacing default acm certificate
+
+resource "aws_lb_listener_certificate" "cert-listener" {
+  listener_arn    = "${aws_lb_listener.listener.arn}"
+  certificate_arn = "${aws_acm_certificate.sslcert.arn}"
+}
 
 #create alb listener rule and config forwarding actions 
 
