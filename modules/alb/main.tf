@@ -1,9 +1,19 @@
-# This file takes data sources created in AWS from data.tf file
-# Vars are declared in vars.tf and called here
+
+resource "aws_alb_target_group" "target1" {
+ name = "alb-target-group"
+ port = 80
+ protocol = "HTTP"
+ vpc_id = "${data.aws_lb.alb.vpc_id}"
+}
+
+resource "aws_alb_target_group" "target2" {
+ name = "alb-target-group2"
+ port = 80
+ protocol = "HTTP"
+ vpc_id = "${data.aws_lb.alb.vpc_id}"
+}
 
 
-
-#create alb listener and set default action 
 resource "aws_alb_listener" "listener" {
   load_balancer_arn = "${data.aws_lb.alb.arn}"
   port              = "443"
@@ -20,28 +30,4 @@ resource "aws_alb_listener" "listener" {
   }
  }
 
- #for replacing default acm certificate
-
-resource "aws_lb_listener_certificate" "cert-listener" {
-  listener_arn    = "${aws_lb_listener.listener.arn}"
-  certificate_arn = "${aws_acm_certificate.sslcert.arn}"
-}
-
-#create alb listener rule and config forwarding actions 
-
-resource "aws_alb_listener_rule" "listener_rule" {
-    listener_arn = "${aws_alb_listener.listener.arn}"
-    action {
-      type             = "forward"
-      target_group_arn = "${data.aws_lb_target_group.target.arn}"
-    }   
-    condition {    
-     field  = "path-pattern"      
-     values = ["/index.html/*"] 
-    }
-    condition {
-    field = "host-header"
-    values = var.CONDITION_VALUES
-    } 
-}
 
